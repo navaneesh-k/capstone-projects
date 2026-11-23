@@ -1,0 +1,46 @@
+
+name: Project 18 - GitOps Terraform Deployment
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+    paths:
+      - "project18/**"
+
+permissions:
+  contents: read
+
+jobs:
+  terraform-apply:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    environment: production
+
+    defaults:
+      run:
+        working-directory: project18
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+      - name: Verify Deployment
+        run: |
+          cat deployment.txt
+          terraform output deployment_status
