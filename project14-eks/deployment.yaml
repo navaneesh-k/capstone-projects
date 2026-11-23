@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project14-flask-nk
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: project14-flask-nk
+  template:
+    metadata:
+      labels:
+        app: project14-flask-nk
+    spec:
+      containers:
+        - name: flask
+          image: 590507089733.dkr.ecr.ap-southeast-1.amazonaws.com/project13-flask-nk:1.0
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10

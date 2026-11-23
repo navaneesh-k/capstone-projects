@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: project14-flask-service-nk
+spec:
+  type: LoadBalancer
+  selector:
+    app: project14-flask-nk
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000

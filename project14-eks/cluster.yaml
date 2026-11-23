@@ -1,0 +1,17 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: project14-eks-nk
+  region: ap-southeast-1
+
+iam:
+  withOIDC: true
+
+managedNodeGroups:
+  - name: project14-nodes-nk
+    instanceType: t3.medium
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 2
+    privateNetworking: false
