@@ -1,0 +1,35 @@
+---
+- name: Install and configure Nginx using Ansible
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Start and enable Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Deploy custom homepage
+      ansible.builtin.copy:
+        dest: /usr/share/nginx/html/index.html
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Project 15 - Ansible</title>
+          </head>
+          <body>
+            <h1>Project 15 - Ansible Automation</h1>
+            <p>Nginx web server configured using Ansible.</p>
+          </body>
+          </html>
+        owner: root
+        group: root
+        mode: '0644'

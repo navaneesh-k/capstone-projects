@@ -20,3 +20,8 @@ override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+
+# Project 15 local AWS configuration
+project15-ansible/inventory.ini
+project15-ansible/trust-policy.json
+project15-ansible/ssm-s3-policy.json
