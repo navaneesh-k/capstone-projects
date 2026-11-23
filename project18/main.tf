@@ -13,8 +13,8 @@ resource "local_file" "deployment" {
 
   content = <<-EOF
     Project 18 - GitOps Infrastructure Deployment
-    Status: Successfully deployed
     Managed by: Terraform
+    Status: Successfully deployed through PR merge
     Triggered by: GitHub Actions
     Environment: Production
   EOF
